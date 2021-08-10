@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.progress{ background-color: #212529!important; }
+hr { border: 1px solid white!important; }
+
+body{ padding-top:90px; padding-bottom: 150px; color: white!important;
+
+  background: url(https://i.imgur.com/Bg9NtFU.png) no-repeat center center fixed #000; 
+  color:#fff;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.swal2-styled.swal2-confirm,
+.swal2-title,
+.swal2-html-container {
+    color: #fff!important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.swal2-popup, .swal2-success-circular-line-left, .swal2-success-circular-line-right, .swal2-success-fix {
+    background-color: #111!important;
+    border: 1px solid #444!important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.card { background-color: #000!important; }
+html, body, input, textarea, select {
+    font-family: Roboto,sans-serif!important;
+    background-color: #000!important;
+    color: white!important;
+
 }
 
-.App-link {
-  color: #61dafb;
+.card-img{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+}
+.card:hover .card-img{
+    filter: brightness(100%);
+}
+.card{
+    overflow: hidden!important;
+    background-color: #111!important;
+}
+.card:hover{
+  border: 1px solid yellow;
+  z-index: 2;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card .card-text {
+    background: black;
+}
+.card:hover .card-text {
+    background: black;
+}
+.item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-20px;
+    top:10px;
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:5px 10px;
+    font-size:25px;
 }

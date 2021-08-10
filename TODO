@@ -1,0 +1,78 @@
+### Alkemy ReactJS Challenge
+
+Desarrollar una applicación para crear un equipo de superhéroes que consumirá una API externa.
+
+API: https://superheroapi.com/
+1. Las diferentes secciones que tendrá la app deberán protegerse verificando que el usuario autenticado disponga de un token que se almacenará en localStorage. El mismo, se obtendrá de la API con datos de muestra. 
+2. Si un usuario intenta ingresar a cualquier ruta sin estar autenticado, deberá ser redirigido al login.
+3. Para el manejo de HTTP request usar Axios.
+4. El sitio deberá usar Bootstrap (el sitio debe ser responsive).
+
+
+- Requerimientos Funcionales.
+En la pantalla de Home se deberá mostrar, además de los miembros del equipo:
+guardar cada miembro del equipo en localStorage.
+escribir una función para agregar un superhéroe al localStorage.
+1. Acumulativo de powerstats, agrupados por cada uno, es decir: suma total de intelligence, strength, etc. de todos los miembros individuales del grupo.
+2. El powerstat que más acumulativo tenga debería aparecer arrriba para categorizar el tipo de equipo (inteligencia, fuerza, etc).
+3. Pesos y altura promedio del equipo. 
+4. El equipo debe tener 6 miembros. Debe haber 3 miembros con orientación buena y 3 con orientación mala (Esto debe validarse al intentar agregar un nuevo héroe).
+5. Se deberá poder eliminar un miembro del equipo, lo que generará un nuevo promedio de peso, acumulativo de powerstats, etc.
+### Requerimientos Técnicos
+Aprovechando las catererísticas de React, deberán crearse las siguientes secciones y modularizar las mismas en componentesreutilizables.
+
+### 1. Formulario de Login.
+El formulario se deberá renderizar al ingresar a cualquier
+ruta si el usuario no está autenticado, conteniendo los
+campos:
+- Email. 
+- Contraseña.
+- Botón "Enviar".
+Al hacer click en "Enviar", se deberá validar que ambos campos no estén vacíos y mostrar un mensaje al usuario si lo estuviesen. Caso contrario, se deberá realizar una petición POST a la siguiente url, con los campos email y password en el BODY.
+
+Los datos válidos para obtener un token son:
+- Email: challenge@alkemy.org
+- Password: react
+
+En el caso de obtener un error de la API, se deberá mostrar una alerta, mientras que si es satisfactorio deberá redirigir al Home y almacenar el token obtenido en localStore.
+
+Las validaciones del formulario deberán realizarse utilizando la libería Formik.
+
+#### 2. Equipo.
+El Home de la aplicación mostrará a los miembros del equipo en un listado en un grid. Cada ítem del listado contendrá:
+- Nombre del héroe.
+- Imágen.
+- PowerStats.
+- Acciones para ver el detalle o eliminarlo del equipo.
+
+### 3. Buscador de Héroes.
+Para agregar un héroe a su equipo, se deberá visualizar un formulario que realice una petición GET al endpoint de búsqueda y muestre los resultados disponibles en un grid. Esos resultados deberán mostrar:
+- Nombre del héroe.
+- Imágen.
+- Acciones para agregarlo al equipo.
+Las validaciones del formulario deberán realizarse utlizando la librería Formik.
+### 4. Detalle de Héroe.
+Al hacer click en un héroe del equipo, se mostrará los detalles que figuran en el endpoint. De ellos mostrar: 
+- altura 
+- nombre completo
+- alias
+- color de ojos y cabello
+- lugar de trabajo.
+
+## Tests
+De forma opcional, se podrán agregar tests unitarios para validar los elmentos de la app:
+- Verificación de usuario autenticado al ingresar a una ruta.
+- Validación de campos en submit de formulario de login o búsqueda.
+- Manejo de excepciones al obtener errores de la API.
+
+Para la implementación de los tests deberán utlizarse las librerías Jest y React Testing Library.
+
+
+## Criterios a evaluar
+- Diseño responsive, moderno e intuitivo.
+- Debe utilizarse Bootstrap para permitir que el proyecto sea responsive, y media queries para los elementos personalizados que se desarrollen.
+- Conocimientos básicos de React.
+- Validación de formularios utilizando la librería Fornik.
+- Buenas prácticas de programación.
+- Buenas prácticas para nombre de rutas.
+- Código modularizado en componentes reutilizables e independientes.
