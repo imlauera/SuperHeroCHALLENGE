@@ -33,7 +33,7 @@ class UsuarioServicio {
               }else{ 
                   return ({
                       status: 'error', 
-                      mensaje: 'Sólo podés agregar 3 superhéroes de la misma personalidad al equipo.'
+                      mensaje: 'Sólo podés agregar 3 superhéroes de la misma orientación al equipo.'
                   })
               }
       }else{

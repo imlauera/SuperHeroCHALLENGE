@@ -8,45 +8,32 @@ import UsuarioServicio from "../services/UsuarioServicio";
 
 
 export default class Detalle extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            post: [], 
-            loading: true, 
-            nuevo_comentario: false, 
-            texto_comentario: '', 
-            comentario: '', 
-            user: undefined,
-            nuevoCampeon: ''
-        };
-        this.agregarCampeon = this.agregarCampeon.bind(this);
-        this.eliminarCampeon = this.eliminarCampeon.bind(this);
-        this.renderPostsTable = this.renderPostsTable.bind(this);
-    }
 
+constructor(props) {
+super(props);
+this.state = { post: [], loading: true, nuevo_comentario: false, texto_comentario: '', comentario: '', user: undefined };
+this.renderPostsTable = this.renderPostsTable.bind(this);
+}
 
-agregarCampeon(heroe)  {
-  const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
-  if (resultado.status == 'error')
-      this.errorMensaje(resultado.mensaje);
-  this.setState((state) => (
-      { nuevoCampeon: state.nuevoCampeon+1 }
-  ));
-}
-eliminarCampeon(heroe)  {
-  UsuarioServicio.borrarHeroeEquipo(heroe);
-  this.setState((state) => (
-      { nuevoCampeon: state.nuevoCampeon+1 }
-  ));
-}
-  errorMensaje = (error) => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Ups...',
-      text: error
-    })
+nuevoComentario = (texto_comentario) => {
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
   }
+})
 
+Toast.fire({
+  icon: 'info',
+  title: 'Nuevo comentario'
+})
+this.setState({nuevo_comentario: true, texto_comentario: texto_comentario});
+}
 
 componentDidMount() {
 const user = AutenticacionServicio.obtenerUsuarioActual();
@@ -119,25 +106,19 @@ return (
 								</a>
 								<div class="mt-3">
 									<h4>{heroe.name}</h4>
-									<p class="mb-1">{heroe.biography['full-name']}</p>
-                        { (equipo.some(x => x.biography['full-name'] === heroe.biography['full-name'] && x.name === heroe.name)) 
-                        ?
-                        <button 
-                        className="btn btn-danger"
-                        onClick={()=>this.eliminarCampeon(heroe)}
-                        >
-                        	Eliminar
-                        </button>
-                        :
-                        <button
-                        className="btn btn-success"
-                        onClick={()=>this.agregarCampeon(heroe)}
-                        >
-	                        Agregar
-                        </button>
-                    }
+									<p class="text-secondary mb-1">{heroe.biography['full-name']}</p>
+                  { (equipo.some(x => x.biography['full-name'] === heroe.biography['full-name'] && x.name === heroe.name)) 
+                      ?
+                      <button class="badge bg-dark">Este héroe pertenece a tu equipo</button>
+                      :
+                      <button class="badge bg-danger">Este héroe no pertenece a tu equipo.</button>
+                  }
 								</div>
 							</div>
+	            <p>Kilos: {totalKilos.toFixed(2)}</p>
+	            <p>Libras: {totalLibras.toFixed(2)}</p>
+	            <p>Centímetros: {totalAlturaCm.toFixed(2)}</p>
+	            <p>Pies: {totalAlturaPies.toFixed(2)}</p>
             </div>
         </div>
 				</div>
@@ -208,38 +189,9 @@ return (
 												</div>
 											</div>
 	            )}
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Peso (Kilos)</h6>
-								</div>	
-								<div class="col-sm-9">
-									{totalKilos.toFixed(2)}
-								</div>
-							</div>    
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Peso (Libras)</h6>
-								</div>	
-								<div class="col-sm-9">
-									{totalLibras.toFixed(2)}
-								</div>
-							</div>  
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Altura (CM)</h6>
-								</div>	
-								<div class="col-sm-9">
-									{totalAlturaCm.toFixed(2)}
-								</div>
-							</div>  
-							<div class="row mb-3">
-								<div class="col-sm-3">
-									<h6 class="mb-0">Altura (Pies)</h6>
-								</div>	
-								<div class="col-sm-9">
-									{totalAlturaPies.toFixed(2)}
-								</div>
-							</div> 
+
+
+
 						</div>
 					</div>
 				</div>

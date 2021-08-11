@@ -12,7 +12,6 @@ class AutenticacionServicio {
           return response.data;
         })
         .catch(err => {
-          console.log(err);
           throw err;
         });
   }

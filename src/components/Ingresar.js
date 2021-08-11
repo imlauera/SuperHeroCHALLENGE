@@ -31,7 +31,10 @@ export class Ingresar extends Component {
   }
 
 
-  iniciarSesion = (values)=> {
+  iniciarSesion = (values,{
+      props = this.props,
+      setSubmitting
+   }) => {
     AutenticacionServicio
       .ingresar(values.username, values.password)
       .then(response => {
@@ -43,8 +46,11 @@ export class Ingresar extends Component {
         })
       .catch(error => {
           console.log(error);
+          this.setState({error: error.response.data.error});
         }
     );
+    setSubmitting(false);
+    return ;
   } 
 
   render() {
@@ -73,16 +79,25 @@ export class Ingresar extends Component {
              onSubmit={this.iniciarSesion}
              render={formProps => {
                 return(
+                  <>
                    <Form>
                       <Field type="email" className="mt-3 form-control" id="username" name="username" type="email" placeholder="Email"/>
                       <ErrorMessage name="username" render={msg => <Alert variant="danger">{msg}</Alert>} />
                       <Field type="text" className="mt-3 form-control" id="password" name="password" type="password" placeholder="Contraseña" />
                       <ErrorMessage name="password" render={msg => <Alert variant="danger">{msg}</Alert>} />
 
-                      <button type="submit" className="btn btn-primary" disabled={formProps.isSubmitting}>
+                      <button type="submit" className="btn btn-warning btn-lg btn-block" disabled={formProps.isSubmitting}>
                          Ingresar
                       </button>
                    </Form>
+                  {
+                    this.state.error && (
+                      <Alert variant="danger">
+                        {this.state.error}
+                      </Alert>
+                    )
+                  }
+                  </>
                 );
              }}
           />

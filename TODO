@@ -76,3 +76,6 @@ Para la implementación de los tests deberán utlizarse las librerías Jest y Re
 - Buenas prácticas de programación.
 - Buenas prácticas para nombre de rutas.
 - Código modularizado en componentes reutilizables e independientes.
+
+
+Pasar errorMensaje a un archivo.

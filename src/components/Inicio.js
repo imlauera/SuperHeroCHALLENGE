@@ -49,7 +49,7 @@ class Inicio extends Component {
 
     return (
       <div>
-        <Container>
+        <Container style={{backgroundColor: '#000'}}>
         <div class="jumbotron">
           <h1 class="display-6">{"SuperHeroChallenge"}</h1>
           <p class="lead">En esta aplicación podrás analizar y comparar fácilmente la inteligencia, la fuerza, la velocidad, el poder, el peso, la altura del superhéroe que quieras. ¿Quién es más alto <Link to={`/detalle/332`}>Hulk</Link> o <Link to={`/detalle/655`}>Thanos</Link>? ¿Quién es más inteligente <Link to={`/detalle/644`}>Superman</Link> o <Link to={`/detalle/70`}>Batman</Link>? También podrás crear tu propio equipo de superhéroes y observar sus fortalezas y debilidades.</p>
@@ -61,14 +61,14 @@ class Inicio extends Component {
                     <PowerStat equipo={equipo}/>
                     <hr/>
                     <h3 className="text-warning text">Miembros de tu Equipo:</h3>
-                    <div class="row mainc">
+                    <div class="row">
                         {equipo?.map(post =>
                             <HeroeDetallado eliminarCampeon={this.eliminarCampeon} agregarCampeon={this.agregarCampeon} heroe={post}/>
                         )}
                     </div>
                 </>
                 :
-                <h6>No tenés ningún equipo creado, buscá y agregá un superhéroe.</h6>
+                <Alert variant="dark">Busca y agrega un superhéroe. Cuando agregues un superhéroe al equipo, aquí se mostrarán las estadísticas de cada uno y del equipo.</Alert>
             }
 
         </Container>
