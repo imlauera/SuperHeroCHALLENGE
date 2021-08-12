@@ -86,9 +86,9 @@ export class Ingresar extends Component {
                         name="username"
                         placeholder="Email"
                         />
-                      <ErrorMessage name="username" render={msg => <Alert variant="danger">{msg}</Alert>} />
-                      <Field className="mt-3 form-control" id="password" name="password" type="password" placeholder="Contraseña" />
-                      <ErrorMessage name="password" render={msg => <Alert variant="danger">{msg}</Alert>} />
+                       <ErrorMessage name="username" render={msg => <Alert variant="danger">{msg}</Alert>} />
+                       <Field className="mt-3 form-control" id="password" name="password" type="password" placeholder="Contraseña" />
+                       <ErrorMessage name="password" render={msg => <Alert variant="danger">{msg}</Alert>} />
 
                       <button type="submit" className="btn btn-warning btn-lg btn-block" disabled={formProps.isSubmitting}>
                          Ingresar

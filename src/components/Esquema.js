@@ -9,8 +9,7 @@ import AutenticacionServicio from '../services/AutenticacionServicio';
 import { withRouter } from 'react-router-dom';
 
 
-
-export class Layout extends Component {
+export class Esquema extends Component {
   constructor(props) {
     super(props);
     this.state = { estaAutenticado: false }
@@ -61,8 +60,6 @@ export class Layout extends Component {
                   </Route>
                   <Route path='/detalle/:id' exact component={Detalle}/>
                   <Route path='/buscar' exact component={Buscar}/>
-                  {/*<Route path='/ver/:id' exact component={GetPost}/>
-                  <Route path='/cat/:categoria' exact component={FetchDataCategoria}/>*/}
                 </Switch>
               {this.props.children}
             </div>
@@ -71,5 +68,4 @@ export class Layout extends Component {
   }
 }
 
-export default withRouter(Layout);
-
+export default withRouter(Esquema);
