@@ -10,11 +10,8 @@ export default class Detalle extends Component {
         this.state = { 
             heroe: [], 
             loading: true, 
-            nuevo_comentario: false, 
-            texto_comentario: '', 
-            comentario: '', 
             user: undefined,
-            nuevoCampeon: ''
+            nuevoCampeon: 0
         };
         this.agregarCampeon = this.agregarCampeon.bind(this);
         this.eliminarCampeon = this.eliminarCampeon.bind(this);

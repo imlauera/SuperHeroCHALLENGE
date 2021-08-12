@@ -61,7 +61,7 @@ export class Esquema extends Component {
                   <Route path='/detalle/:id' exact component={Detalle}/>
                   <Route path='/buscar' exact component={Buscar}/>
                 </Switch>
-              {this.props.children}
+                {this.props.children}
             </div>
     </div>
     );

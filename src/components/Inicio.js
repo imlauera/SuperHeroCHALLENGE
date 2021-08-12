@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PowerStat from './PowerStat';
-import Swal from 'sweetalert2'
+import { errorMensaje } from './aux';
 import HeroeDetallado from './HeroeDetallado';
 import UsuarioServicio from "../services/UsuarioServicio";
 
@@ -14,18 +14,10 @@ class Inicio extends Component {
     this.eliminarCampeon = this.eliminarCampeon.bind(this);
   }
 
-  errorMensaje = (error) => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Ups...',
-      text: error
-    })
-  }
-
   agregarCampeon(heroe)  {
       const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
       if (resultado.status === 'error')
-          this.errorMensaje(resultado.mensaje);
+          errorMensaje(resultado.mensaje);
 
       this.setState((state) => (
           { nuevoCampeon: state.nuevoCampeon+1 }
@@ -38,8 +30,6 @@ class Inicio extends Component {
           { nuevoCampeon: state.nuevoCampeon+1 }
       ));
   }
-
-
 
   render() {
     const equipo = UsuarioServicio.mostrarEquipo();

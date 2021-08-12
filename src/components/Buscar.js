@@ -18,7 +18,7 @@ class Buscar extends Component {
       heroes: [],
       error: "",
       loading: false,
-      nuevoCampeon: ''
+      nuevoCampeon: 0
     };
     
     this.agregarCampeon = this.agregarCampeon.bind(this);
@@ -64,7 +64,7 @@ class Buscar extends Component {
         })
       .catch(error => {
           console.log(error);
-          this.setState({error: error.response.data.message});
+          this.setState({error: error.response.data.error});
         }
     );
     }
@@ -111,21 +111,20 @@ class Buscar extends Component {
               <Button type="submit" variant="light">
                 Buscar
               </Button>
-              
-        </div>
-              {
-                this.state.error && (
-                  <Alert color="danger">
-                    {this.state.error}
-                  </Alert>
-                )
-              }
+            </div>
+            {
+              this.state.error && (
+                <Alert color="danger">
+                  {this.state.error}
+                </Alert>
+              )
+            }
             </Form>
             </Col>
           </Row>
         </Container>
-          {loading}
-          {contents}
+        {loading}
+        {contents}
       </div>
     );
 

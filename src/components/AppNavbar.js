@@ -42,4 +42,4 @@ class AppNavbar extends Component {
     }
 }
 
-export default withRouter(AppNavbar);
+export default AppNavbar;
