@@ -5,9 +5,6 @@ import UsuarioServicio from "../services/UsuarioServicio";
 export default class HeroeFull extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        nuevoCampeon: 0
-    }
   }
 
 

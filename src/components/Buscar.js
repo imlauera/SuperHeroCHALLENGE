@@ -10,7 +10,6 @@ import Heroe from './Heroe';
 import '../App.css';
 
 class Buscar extends Component {
-
   constructor(props) {
     super(props);
 

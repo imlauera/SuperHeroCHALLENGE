@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-
-
-export default class Arg extends Component {
+export default class PowerStat extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        nuevoCampeon: 0
-    }
   }
 
   calcularPromedio(equipo){
