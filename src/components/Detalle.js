@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AutenticacionServicio from "../services/AutenticacionServicio";
 import Swal from 'sweetalert2'
+import { errorMensaje } from './aux'
 import { Spinner } from 'react-bootstrap';
 import UsuarioServicio from "../services/UsuarioServicio";
 
@@ -28,7 +29,7 @@ export default class Detalle extends Component {
 agregarCampeon(heroe)  {
   const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
   if (resultado.status == 'error')
-      this.errorMensaje(resultado.mensaje);
+      errorMensaje(resultado.mensaje);
   this.setState((state) => (
       { nuevoCampeon: state.nuevoCampeon+1 }
   ));
@@ -39,13 +40,6 @@ eliminarCampeon(heroe)  {
       { nuevoCampeon: state.nuevoCampeon+1 }
   ));
 }
-  errorMensaje = (error) => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Ups...',
-      text: error
-    })
-  }
 
 
 componentDidMount() {

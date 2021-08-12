@@ -4,13 +4,14 @@ import { Form, Alert, Row, Col } from "react-bootstrap";
 import {Button} from 'react-bootstrap';
 import AutenticacionServicio from "../services/AutenticacionServicio";
 import UsuarioServicio from "../services/UsuarioServicio";
-import '../App.css';
 import { Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import OverlayHeroe from './OverlayHeroe';
 import Swal from 'sweetalert2'
+import { errorMensaje } from './aux';
 import Heroe from './Heroe';
 
+import '../App.css';
 
 class Buscar extends Component {
 
@@ -28,18 +29,11 @@ class Buscar extends Component {
     this.agregarCampeon = this.agregarCampeon.bind(this);
     this.eliminarCampeon = this.eliminarCampeon.bind(this);
   }
-  errorMensaje = (error) => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Ups...',
-      text: error
-    })
-  }
 
   agregarCampeon(heroe)  {
       const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
       if (resultado.status == 'error')
-          this.errorMensaje(resultado.mensaje);
+          errorMensaje(resultado.mensaje);
       this.setState((state) => (
           { nuevoCampeon: state.nuevoCampeon+1 }
       ));
