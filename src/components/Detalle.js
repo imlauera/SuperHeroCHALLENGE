@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import AutenticacionServicio from "../services/AutenticacionServicio";
-import Swal from 'sweetalert2'
 import { errorMensaje } from './aux'
 import { Spinner } from 'react-bootstrap';
 import UsuarioServicio from "../services/UsuarioServicio";
@@ -28,7 +26,7 @@ export default class Detalle extends Component {
 
 agregarCampeon(heroe)  {
   const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
-  if (resultado.status == 'error')
+  if (resultado.status === 'error')
       errorMensaje(resultado.mensaje);
   this.setState((state) => (
       { nuevoCampeon: state.nuevoCampeon+1 }
@@ -64,9 +62,6 @@ changeHandler = (event) => {
 
 renderPostsTable(heroe) {
 
-let adminControl = "";
-const user = this.state.user;
-
 let total = {
 	'Inteligencia': parseInt(heroe.powerstats['intelligence']),
 	'Fuerza': parseInt(heroe.powerstats['strength']),
@@ -101,14 +96,14 @@ return (
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex flex-column align-items-center text-center">
-								<a href={heroe.image.url} target="_blank">
+								<a href={heroe.image.url} target="_blank" rel="noreferrer">
 	                <div class="item">
 	                    <span class="notify-badge">
 	                                {heroe.biography['alignment']==='good' && '😊'}
 	                                {heroe.biography['alignment']==='neutral' && '😐'}
 	                                {heroe.biography['alignment']==='bad' && '😠' }{' '}
 	                </span>
-	                    <img src={heroe.image.url} width="150"/>
+	                    <img src={heroe.image.url} width="150" alt={heroe.name}/>
 	                </div>
 								</a>
 								<div class="mt-3">
@@ -189,12 +184,11 @@ return (
 													<h6 class="mb-0">{key}</h6>
 												</div>
 												<div class="col-sm-9">
-													<div style={{height: '15px'}}
+													<div style={{height: '25px', width: `${value.toFixed(2)}%`}}
 													className={`progress-bar ${value>80 
 														? 'bg-danger' : value>50 ? 'bg-warning' : 'bg-info' }`
 													} 
 													role="progressbar"
-													style={{width: `${value.toFixed(2)}%`}}
 													aria-valuenow="50"
 													aria-valuemin="0"
 													aria-valuemax="100"

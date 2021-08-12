@@ -1,5 +1,4 @@
 import axios from 'axios';
-import authHeader from './auth-header';
 
 const API_URL = "https://superheroapi.com/api.php/4363178927077672";
 

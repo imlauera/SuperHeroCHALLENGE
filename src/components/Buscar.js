@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import { Form, Alert, Row, Col } from "react-bootstrap";
 import {Button} from 'react-bootstrap';
-import AutenticacionServicio from "../services/AutenticacionServicio";
 import UsuarioServicio from "../services/UsuarioServicio";
 import { Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import OverlayHeroe from './OverlayHeroe';
-import Swal from 'sweetalert2'
 import { errorMensaje } from './aux';
 import Heroe from './Heroe';
 
@@ -32,7 +28,7 @@ class Buscar extends Component {
 
   agregarCampeon(heroe)  {
       const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
-      if (resultado.status == 'error')
+      if (resultado.status === 'error')
           errorMensaje(resultado.mensaje);
       this.setState((state) => (
           { nuevoCampeon: state.nuevoCampeon+1 }

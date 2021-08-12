@@ -46,7 +46,7 @@ export class Layout extends Component {
   render () {
     const usuario = AutenticacionServicio.obtenerUsuarioActual();
 
-    if(!usuario && window.location.pathname != '/ingresar') {
+    if(!usuario && window.location.pathname !== '/ingresar') {
       this.props.history.push('/ingresar');
     }
 

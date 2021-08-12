@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import UsuarioServicio from "../services/UsuarioServicio";
 
 export default class Arg extends Component {
@@ -27,7 +26,7 @@ export default class Arg extends Component {
                         {heroe.biography['alignment']==='neutral' && '😐'}
                         {heroe.biography['alignment']==='bad' && '😠' }{' '}
         </span>
-            <img src={heroe.image.url} width="150"/>
+            <img src={heroe.image.url} width="150" alt={heroe.name}/>
 	</div>
                     <div class="mt-3">
                       <h4>{heroe['name']}</h4>

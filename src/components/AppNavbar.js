@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-import AutenticacionServicio from '../services/AutenticacionServicio';
 import { Container, Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import logo from '../logoBatman1.png';
 
@@ -27,7 +26,7 @@ import logo from '../logoBatman1.png';
       return (
 <Navbar bg="dark" variant="dark" expand="sm" fixed="top">
   <Container>
-    <Navbar.Brand as={Link} to="/"><span className=""><img src={logo} width={50}/> SuperHeroChallenge</span></Navbar.Brand>
+    <Navbar.Brand as={Link} to="/"><span className=""><img src={logo} alt='logo' width={50}/> SuperHeroChallenge</span></Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
@@ -40,7 +39,7 @@ import logo from '../logoBatman1.png';
       ? (
         <>
         <NavDropdown title={name} id="basic-nav-dropdown">
-          <NavDropdown.Item href={"javascript:void(0)"} onClick={this.props.salir}>Salir</NavDropdown.Item>
+          <NavDropdown.Item onClick={this.props.salir}>Salir</NavDropdown.Item>
         </NavDropdown>
             {/*<ModalCog signOut={this.signOut}/>*/}
         </>

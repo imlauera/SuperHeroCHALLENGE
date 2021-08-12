@@ -1,13 +1,9 @@
-import AppNavbar from './AppNavbar';
 import React, { Component } from 'react';
 import { Container, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Buscar from './Buscar';
 import PowerStat from './PowerStat';
 import Swal from 'sweetalert2'
-import Heroe from './Heroe';
 import HeroeDetallado from './HeroeDetallado';
-import AutenticacionServicio from "../services/AutenticacionServicio";
 import UsuarioServicio from "../services/UsuarioServicio";
 
 class Inicio extends Component {
@@ -29,7 +25,7 @@ class Inicio extends Component {
   }
   agregarCampeon(heroe)  {
       const resultado = UsuarioServicio.agregarHeroeEquipo(heroe);
-      if (resultado.status == 'error')
+      if (resultado.status === 'error')
           this.errorMensaje(resultado.mensaje);
       this.setState((state) => (
           { nuevoCampeon: state.nuevoCampeon+1 }

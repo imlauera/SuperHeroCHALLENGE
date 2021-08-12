@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import UsuarioServicio from "../services/UsuarioServicio";
-import { CircularProgressbar, CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 
@@ -26,11 +23,7 @@ export default class Arg extends Component {
     totalVelocidad = 0,
     totalDurabilidad = 0,
     totalPoder = 0,
-    totalCombate = 0,
-    totalPesoKilos = 0,
-    totalPesoLibras = 0,
-    totalAlturaPies = 0,
-    totalAlturaCm = 0; 
+    totalCombate = 0;
 
     equipo.forEach(heroe=> {
         totalInteligencia += parseInt(heroe.powerstats['intelligence']);
