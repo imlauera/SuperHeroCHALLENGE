@@ -3,7 +3,7 @@ import AutenticacionServicio from "../services/AutenticacionServicio";
 import { errorMensaje } from './aux'
 import { Spinner } from 'react-bootstrap';
 import UsuarioServicio from "../services/UsuarioServicio";
-
+import {  Alert } from "react-bootstrap";
 
 
 export default class Detalle extends Component {
@@ -14,6 +14,7 @@ export default class Detalle extends Component {
             loading: true, 
             nuevo_comentario: false, 
             texto_comentario: '', 
+            error: '',
             comentario: '', 
             user: undefined,
             nuevoCampeon: ''
@@ -90,6 +91,13 @@ const equipo = UsuarioServicio.mostrarEquipo();
 return (
   <>
 <div class="container">
+        {
+          this.state.error && (
+            <Alert variant="danger">
+              {this.state.error}
+            </Alert>
+          )
+        }
 		<div class="main-body">
 			<div class="row">
 				<div class="col-lg-4">
@@ -252,10 +260,13 @@ return (
 
   async populatePostData() {
     const { id } = this.props.match.params;
-    const API_URL = "https://superheroapi.com/api.php/4363178927077672/";
-    let fetch_post = API_URL + id;
-    const response = await fetch(fetch_post);
-    const data = await response.json();
-    this.setState({ post: data, loading: false });
+    UsuarioServicio.obtenerInformacionHeroe(id).then(
+        response => {
+          this.setState({
+            post: response, loading: false
+          });
+        }).catch(error => {
+          this.setState({error: error.response.data.error});
+        });
   }
 }

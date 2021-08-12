@@ -55,7 +55,16 @@ class UsuarioServicio {
   buscarHeroe = (nombre) => {
       return axios.get(API_URL + `/search/${nombre}`)
         .then(response => {
-          console.log(response.data);
+          return response.data;
+        })
+        .catch(err => {
+          throw err;
+        });
+  }
+
+  obtenerInformacionHeroe = (id) => {
+      return axios.get(API_URL + `/${id}`)
+        .then(response => {
           return response.data;
         })
         .catch(err => {
