@@ -14,8 +14,8 @@ class Buscar extends Component {
     super(props);
 
     this.state = {
-      titulo: "",
-      posts: [],
+      nombreHeroe: "",
+      heroes: [],
       error: "",
       loading: false,
       nuevoCampeon: ''
@@ -23,6 +23,7 @@ class Buscar extends Component {
     
     this.agregarCampeon = this.agregarCampeon.bind(this);
     this.eliminarCampeon = this.eliminarCampeon.bind(this);
+    this.renderHeroes = this.renderHeroes.bind(this);
   }
 
   agregarCampeon(heroe)  {
@@ -49,16 +50,15 @@ class Buscar extends Component {
   doBusqueda = async (event) => {
    event.preventDefault();
 
-
-    if (this.state.titulo.length > 1){
+    if (this.state.nombreHeroe.length > 1){
     this.setState({ loading: true });
     UsuarioServicio
-      .buscarHeroe(this.state.titulo)
+      .buscarHeroe(this.state.nombreHeroe)
       .then(response => {
 
           console.log(response);
           this.setState({
-            posts: response.results,
+            heroes: response.results,
             loading: false
           });
         })
@@ -69,13 +69,13 @@ class Buscar extends Component {
     );
     }
   } 
-  renderPostsTable(posts) {
+  renderHeroes(heroes) {
     return (
       <div class="container">
-            {posts?.length > 0
+            {heroes?.length > 0
                 &&
                     <div class="row mainc">
-                        {posts?.map(post =>
+                        {heroes?.map(post =>
                             <Heroe eliminarCampeon={this.eliminarCampeon} agregarCampeon={this.agregarCampeon} heroe={post}/>
                         )}
                     </div>
@@ -88,7 +88,7 @@ class Buscar extends Component {
   render() {
     let loading = this.state.loading
       && <strong><Spinner animation="border" /> Buscando</strong>
-    let contents = this.renderPostsTable(this.state.posts);
+    let contents = this.renderHeroes(this.state.heroes);
 
     return ( 
       <div>
@@ -101,14 +101,14 @@ class Buscar extends Component {
                 <Form.Control
                   type="text"
                   placeholder="Escribe el nombre del superhéroe"
-                  name="titulo" id="titulo"
+                  name="nombreHeroe" id="nombreHeroe"
                   className="form-control"
-                  value={this.state.titulo}
+                  value={this.state.nombreHeroe}
                   autoComplete="on"
                   onChange={this.changeHandler}
                 />
             
-              <Button type="submit" variant="dark">
+              <Button type="submit" variant="light">
                 Buscar
               </Button>
               

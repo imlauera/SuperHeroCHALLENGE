@@ -3,88 +3,82 @@ import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-pro
 import 'react-circular-progressbar/dist/styles.css';
 
 export default class PowerStat extends Component {
-  constructor(props) {
-    super(props);
-  }
+    calcularPromedio(equipo){
+        let cantidadHeroes = 0; 
+        equipo.forEach(heroe => {
+            cantidadHeroes += 1;
+        });
 
-  calcularPromedio(equipo){
-    let cantidadHeroes = 0; 
-    equipo.forEach(heroe => {
-        cantidadHeroes += 1;
-    });
+        let totalInteligencia = 0,
+        totalFuerza = 0,
+        totalVelocidad = 0,
+        totalDurabilidad = 0,
+        totalPoder = 0,
+        totalCombate = 0;
 
-    let totalInteligencia = 0,
-    totalFuerza = 0,
-    totalVelocidad = 0,
-    totalDurabilidad = 0,
-    totalPoder = 0,
-    totalCombate = 0;
+        equipo.forEach(heroe=> {
+            totalInteligencia += parseInt(heroe.powerstats['intelligence']);
+            totalFuerza += parseInt(heroe.powerstats['strength']);
+            totalVelocidad += parseInt(heroe.powerstats['speed']);
+            totalDurabilidad += parseInt(heroe.powerstats['durability']);
+            totalPoder += parseInt(heroe.powerstats['power']);
+            totalCombate += parseInt(heroe.powerstats['combat']);
+        });
 
-    equipo.forEach(heroe=> {
-        totalInteligencia += parseInt(heroe.powerstats['intelligence']);
-        totalFuerza += parseInt(heroe.powerstats['strength']);
-        totalVelocidad += parseInt(heroe.powerstats['speed']);
-        totalDurabilidad += parseInt(heroe.powerstats['durability']);
-        totalPoder += parseInt(heroe.powerstats['power']);
-        totalCombate += parseInt(heroe.powerstats['combat']);
-    });
+        let promedio = {
+            'Inteligencia': totalInteligencia,
+            'Fuerza': totalFuerza,
+            'Velocidad': totalVelocidad,
+            'Durabilidad': totalDurabilidad,
+            'Poder': totalPoder, 
+            'Combate': totalCombate
+        };
 
-    let promedio = {
-        'Inteligencia': totalInteligencia,
-        'Fuerza': totalFuerza,
-        'Velocidad': totalVelocidad,
-        'Durabilidad': totalDurabilidad,
-        'Poder': totalPoder, 
-        'Combate': totalCombate
-    };
+        for (const key in promedio) {
+            promedio[key] /= cantidadHeroes;
+        }
+        var promedioOrdenado = [];
+        for (var poderes in promedio) {
+            promedioOrdenado.push([poderes, promedio[poderes]]);
+        }
+        promedioOrdenado.sort(function(a, b) {
+          return b[1] - a[1];
+        });
 
-    for (const key in promedio) {
-        promedio[key] /= cantidadHeroes;
-    }
-    var promedioOrdenado = [];
-    for (var poderes in promedio) {
-        promedioOrdenado.push([poderes, promedio[poderes]]);
-    }
-    promedioOrdenado.sort(function(a, b) {
-      return b[1] - a[1];
-    });
-
-    return promedioOrdenado;
-  }
-
-
-
-  calcularPesoAltura(equipo){
-    let cantidadHeroes = 0; 
-    equipo.forEach(heroe => {
-        cantidadHeroes += 1;
-    });
-
-    let totalPesoKilos = 0,
-    totalPesoLibras = 0,
-    totalAlturaPies = 0,
-    totalAlturaCm = 0; 
-
-    equipo.forEach(heroe=> {
-        totalPesoLibras += parseInt(heroe.appearance.weight[0]);
-        totalPesoKilos += parseInt(heroe.appearance.weight[1]);
-        totalAlturaPies += parseInt(heroe.appearance.height[0]);
-        totalAlturaCm += parseInt(heroe.appearance.height[1]);
-    });
-
-
-    let promedio = {
-        'Libras': totalPesoLibras,
-        'Kilos': totalPesoKilos,
-        'Pies': totalAlturaPies,
-        'CM': totalAlturaCm
-    };
-    for (const key in promedio) {
-        promedio[key] /= cantidadHeroes;
+        return promedioOrdenado;
     }
 
-    return promedio;
-  }
+    calcularPesoAltura(equipo){
+        let cantidadHeroes = 0; 
+        equipo.forEach(heroe => {
+            cantidadHeroes += 1;
+        });
+
+        let totalPesoKilos = 0,
+        totalPesoLibras = 0,
+        totalAlturaPies = 0,
+        totalAlturaCm = 0; 
+
+        equipo.forEach(heroe=> {
+            totalPesoLibras += parseInt(heroe.appearance.weight[0]);
+            totalPesoKilos += parseInt(heroe.appearance.weight[1]);
+            totalAlturaPies += parseInt(heroe.appearance.height[0]);
+            totalAlturaCm += parseInt(heroe.appearance.height[1]);
+        });
+
+
+        let promedio = {
+            'Libras': totalPesoLibras,
+            'Kilos': totalPesoKilos,
+            'Pies': totalAlturaPies,
+            'CM': totalAlturaCm
+        };
+        for (const key in promedio) {
+            promedio[key] /= cantidadHeroes;
+        }
+
+        return promedio;
+    }
 
 
 
@@ -99,7 +93,7 @@ export default class PowerStat extends Component {
     return (
     <div style={{marginBottom: '40px'}}>
         <h3 class="mb-3">Estadísticas del Equipo Creado</h3>
-        <div class="">
+        <div>
             <div className="circleStats">
             <div class="row">
                     {promedioOrdenado?.map(([key,value]) => 

@@ -3,14 +3,6 @@ import { Link } from 'react-router-dom';
 import UsuarioServicio from "../services/UsuarioServicio";
 
 export default class Arg extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        nuevoCampeon: 0
-    }
-  }
-
-
   render () {
     const {heroe} = this.props;
     const equipo = UsuarioServicio.mostrarEquipo();
@@ -20,14 +12,14 @@ export default class Arg extends Component {
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
-  	<div class="item">
-			<span class="notify-badge">
-                        {heroe.biography['alignment']==='good' && '😊'}
-                        {heroe.biography['alignment']==='neutral' && '😐'}
-                        {heroe.biography['alignment']==='bad' && '😠' }{' '}
-        </span>
-            <img src={heroe.image.url} width="150" alt={heroe.name}/>
-	</div>
+                <div class="item">
+                <span class="notify-badge">
+                    {heroe.biography['alignment']==='good' && '😊'}
+                    {heroe.biography['alignment']==='neutral' && '😐'}
+                    {heroe.biography['alignment']==='bad' && '😠' }{' '}
+                </span>
+                <img src={heroe.image.url} width="150" alt={heroe.name}/>
+                </div>
                     <div class="mt-3">
                       <h4>{heroe['name']}</h4>
                       <p class="text-secondary mb-1">{heroe.biography['full-name']}</p>

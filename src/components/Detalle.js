@@ -3,8 +3,6 @@ import AutenticacionServicio from "../services/AutenticacionServicio";
 import { errorMensaje } from './aux'
 import { Spinner } from 'react-bootstrap';
 import UsuarioServicio from "../services/UsuarioServicio";
-import {  Alert } from "react-bootstrap";
-
 
 export default class Detalle extends Component {
     constructor(props) {

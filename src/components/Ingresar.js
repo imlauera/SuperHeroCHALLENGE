@@ -7,25 +7,14 @@ import { withRouter } from 'react-router-dom';
 import AutenticacionServicio from "../services/AutenticacionServicio";
 
 export class Ingresar extends Component {
-
-
   constructor(props) {
     super(props);
 
     this.state = {
       username: "",
       password: "",
-      humanKey: null,
-      human: true,
       error: ""
     };
-  }
-
-
-  changeHandler = (event) => {
-    let nam = event.target.name;
-    let val = event.target.value;
-    this.setState({[nam]: val});
   }
 
 
