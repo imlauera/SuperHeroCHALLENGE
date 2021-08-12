@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 import { Container, Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import logo from '../logoBatman1.png';
 
