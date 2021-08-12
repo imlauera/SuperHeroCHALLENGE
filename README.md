@@ -1,2 +1,1 @@
-## SuperHero Challenge
-##### Alkemy
+#### SuperHero Challenge - Alkemy
