@@ -1,5 +1,6 @@
 #### SuperHero Challenge - Alkemy
-Podés probar la aplicación ejecutando:
-
+<img src="./capturas/1.png"/>
+<img src="./capturas/2.png"/>
+### Instalación
 `git clone https://github.com/imlauera/SuperHeroCHALLENGE`  
 `cd SuperHeroCHALLENGE && npm install && npm start`
